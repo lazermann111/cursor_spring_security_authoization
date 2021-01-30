@@ -1,4 +1,4 @@
-# Laptop rest application
+# Rest application "Laptop"
 Simple REST-application with H2-database.
 For testing app use next links after "run" :
 

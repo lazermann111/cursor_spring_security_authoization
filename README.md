@@ -1,6 +1,7 @@
 # Laptop rest application
 Simple REST-application with H2-database.
 For testing app use next links after "run" :
+
 http://localhost:8080/laptop/create/20 - creating 20 random laptops
 
 http://localhost:8080/laptop/all - shows all created laptops

@@ -1,6 +1,7 @@
 package com.cursor.hw17.controller;
 
 import com.cursor.hw17.service.UserService;
+import com.cursor.hw17.utils.JwtUtil;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -19,13 +20,17 @@ import java.io.Serializable;
 @RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
+    private final JwtUtil jwtTokenUtil;
     private final AuthenticationManager authenticationManager;
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ResponseEntity<UserDetails> createAuthenticationToken(@RequestBody AuthenticationRequest auth) {
+    public ResponseEntity<String> createAuthenticationToken(@RequestBody AuthenticationRequest auth) {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(auth.getUsername(), auth.getPassword()));
-        var user = userService.login(auth.getUsername(), auth.getPassword());
-        return ResponseEntity.ok(user);
+        final UserDetails userDetails = userService.login(auth.getUsername(), auth.getPassword());
+
+        final String jwt = jwtTokenUtil.generateToken(userDetails);
+
+        return ResponseEntity.ok(jwt);
     }
 
     @RequestMapping(value = "/dummy", method = RequestMethod.POST)

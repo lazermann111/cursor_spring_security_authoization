@@ -14,6 +14,7 @@ import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -40,7 +41,7 @@ public class User implements UserDetails {
 
 
 
-    @ElementCollection(targetClass = UserPermission.class)
+    @ElementCollection(targetClass = UserPermission.class, fetch = FetchType.EAGER)
     @Enumerated(EnumType.STRING)
     private Set<UserPermission> permissions;
 

@@ -1,7 +1,7 @@
 package com.cursor.hw17.entity;
 
 public enum  UserPermission {
-    READ,
-    WRITE,
-    ADMIN,
+    ROLE_READ,
+    ROLE_WRITE,
+    ROLE_ADMIN,
 }
